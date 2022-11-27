@@ -1,0 +1,18 @@
+.sentiment-container {
+  width: 700px;
+  padding: 10px;
+  margin-left: 300px;
+  margin-top: 150px;
+  border: 1px solid black;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    .month {
+      font-size: 20px;
+      font-weight: bold;
+    } 
+  }
+}
+#backBtn {
+  margin-left: 300px;
+}

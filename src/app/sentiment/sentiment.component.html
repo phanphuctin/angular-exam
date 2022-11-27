@@ -1,0 +1,16 @@
+<div class="sentiment-container">
+  <h3 class="sentiment-title">{{company}}</h3>
+  <ul *ngIf="stockData.length > 0; else noData">
+    <li *ngFor="let data of stockData">
+        <div class="month">{{data.month}}/{{data.year}}</div>
+        <div class="price-change"> Change: {{data.change}}</div>
+        <div class="mspr">MSPR: {{data.mspr}}</div>
+        <div class="up-arrow" *ngIf="data.change > 0; else down">🡱</div>
+        <ng-template #down>
+          <div class="down-arrow">🡳</div>
+        </ng-template>
+    </li>
+  </ul>
+  <ng-template #noData> No data Available</ng-template>
+</div>
+<button id="backBtn" (click)="goBack()">Go Back</button>

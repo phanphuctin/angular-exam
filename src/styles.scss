@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  width: 200px;
+  height: 30px;
+  border-radius: 10px;
+  line-height: 30px;
+  text-align:center
+}
+
+button {
+  height: 30px;
+  outline: none;
+  cursor: pointer;
+  margin: 10px;
+  padding: 5px;
+  min-width: 30px;
+  background-color: aquamarine;
+  border-radius: 10px;
+}
+
+.up-arrow {
+  font-size: 40px;
+  color: green;
+}
+.down-arrow {
+  font-size: 40px;
+  color: red;
+}

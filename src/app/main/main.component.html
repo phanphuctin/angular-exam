@@ -1,0 +1,50 @@
+<header>
+  <div class="header-container">
+    <div class="input-title">Enter the symbol of a stock to track (e.r AAPL, TSLA, GOOGL)</div>
+    <input 
+    type="text" 
+    id="stockInput" 
+    [(ngModel)]="companyName"
+    (keyup.enter)="searchCompanyStockData(companyName)"
+    maxlength="5"
+    minlength="1"
+    >
+    <button id="trackBtn" (click)="searchCompanyStockData(companyName)" >Track Stock</button>
+  </div>
+</header>
+<section>
+  <div class="show-stock-panel">
+    <ul>
+      <li class="panel-item" *ngFor="let company of companyStockPanel; index as i">
+        <div>
+          <div class="title-container">
+            <h3>{{company.name.description}}</h3>
+            <button 
+              id="remove{{company.name.displaySymbol}}"
+              (click)="deleteCompanyStockPanel(i)"
+            >x</button>
+          </div>
+          <div  class="row">
+            <span class="set-margin">Change today: {{company.data.d}}</span>
+            <span>Openning price: {{company.data.o}}</span>
+          </div>
+          <div class="row">
+            <span class="set-margin">Current Price: {{company.data.c}}</span>
+            <span>High Price: {{company.data.h}}</span>
+          </div>
+          <div class="button-container">
+            <div class="up-arrow" *ngIf="company.data.d > 0; else downTrend">🡱</div>
+            <ng-template  #downTrend>
+                <div class="down-arrow">🡳</div>
+            </ng-template>
+            <button
+              id="sentiment{{company.name.displaySymbol}}"
+              (click)="goToSentiment(company.name.displaySymbol)"
+            >Go to social sentiment details</button>
+            
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
