@@ -30,7 +30,6 @@ export class SentimentComponent implements OnInit {
 
   getSentimentData() {
     this.insiderData.getInsiderSentiment(this.company).subscribe((data: Sentiment) => {
-      console.log(' this.stockData', this.stockData);
       this.stockData = data.data;
       this.company = data.symbol;
     });

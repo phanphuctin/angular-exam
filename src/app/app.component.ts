@@ -9,10 +9,7 @@ import { StockDataService } from './stock-data.service';
 })
 export class AppComponent implements OnInit{
 
-  ngOnInit(): void {
-    console.log('OnInit');
-    
-  }
+  ngOnInit(): void {}
   title = 'angular-exam';
 
 }
