@@ -23,7 +23,12 @@ export class StockDataService {
   }
 
   getInsiderSentiment(value: string) {
-    return this.http.get<Sentiment>(`https://finnhub.io/api/v1/stock/insider-sentiment?symbol=${value}&from=2022-01-01&to=2022-03-01&token=bu4f8kn48v6uehqi3cqg`)
-    .pipe(map((response) =>  response))
+    return this.http.get<Sentiment>(`https://finnhub.io/api/v1/stock/insider-sentiment?symbol=${value}&from=2015-01-01&to=2022-03-01&token=bu4f8kn48v6uehqi3cqg`)
+    .pipe(map((response) =>  {
+      return {
+        data: response.data.splice(response.data.length - 3, response.data.length),
+        symbol: response.symbol
+      }
+    }))
   }
 }

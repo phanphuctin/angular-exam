@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { combineLatestWith, map } from 'rxjs/operators';
+import { zip } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { StockDataService } from '../stock-data.service';
 import { CompanyStock } from '../stocks.models';
 
@@ -23,8 +24,7 @@ export class MainComponent implements OnInit {
     this.getCompanyStockInfo();
   }
   searchCompanyStockData(value: string) {
-    this._stockData.getStockData(value).pipe(
-      combineLatestWith(this._stockData.getName(this.companyName)),
+    zip(this._stockData.getStockData(value),this._stockData.getName(this.companyName)).pipe(
       map(([stockData, name]) => {
         return {
           name: name,
@@ -34,15 +34,14 @@ export class MainComponent implements OnInit {
     ).subscribe((res) => {
       this.companyStockPanel.push(res)
       localStorage.setItem(`company-stock-info`, JSON.stringify(this.companyStockPanel))
-
     })
-}
+  }
+
   deleteCompanyStockPanel(index: number) {
     let currentCompanyArr = JSON.parse(localStorage.getItem('company-stock-info') || '[]');
     currentCompanyArr.splice(index,1)
     this.companyStockPanel = currentCompanyArr;
     localStorage.setItem(`company-stock-info`, JSON.stringify(this.companyStockPanel))
-
   }
 
   goToSentiment(company: string) {

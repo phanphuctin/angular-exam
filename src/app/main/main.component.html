@@ -25,12 +25,12 @@
             >x</button>
           </div>
           <div  class="row">
-            <span class="set-margin">Change today: {{company.data.d}}</span>
-            <span>Openning price: {{company.data.o}}</span>
+            <span class="set-margin">Change today: {{company.data.d | percent}}</span>
+            <span>Openning price: {{company.data.o | currency}}</span>
           </div>
           <div class="row">
-            <span class="set-margin">Current Price: {{company.data.c}}</span>
-            <span>High Price: {{company.data.h}}</span>
+            <span class="set-margin">Current Price: {{company.data.c | currency}}</span>
+            <span>High Price: {{company.data.h | currency}}</span>
           </div>
           <div class="button-container">
             <div class="up-arrow" *ngIf="company.data.d > 0; else downTrend">🡱</div>
